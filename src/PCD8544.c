@@ -835,7 +835,8 @@ void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val)
 			digitalWrite(dataPin, !!(val & (1 << (7 - i))));
 
 		digitalWrite(clockPin, HIGH);
-		for (j = CLKCONST_2; j > 0; j--); // clock speed, anyone? (LCD Max CLK input: 4MHz)
+	        delayMicroseconds(15);    // use wiringPi more accurate us delay
+		//for (j = CLKCONST_2; j > 0; j--); // clock speed, anyone? (LCD Max CLK input: 4MHz)
 		digitalWrite(clockPin, LOW);
 	}
 }
@@ -843,12 +844,13 @@ void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val)
 // roughly calibrated spin delay
 void _delay_ms(uint32_t t)
 {
-	uint32_t nCount = 0;
-	while (t != 0)
-	{
-		nCount = CLKCONST_1;
-		while(nCount != 0)
-			nCount--;
-		t--;
-	}
+	delay(t);    // use wiringPi more accurate ms delay
+	//uint32_t nCount = 0;
+	//while (t != 0)
+	//{
+	//	nCount = CLKCONST_1;
+	//	while(nCount != 0)
+	//		nCount--;
+	//	t--;
+	//}
 }

@@ -51,9 +51,9 @@ Lesser General Public License for more details.
 
 #define swap(a, b) { uint8_t t = a; a = b; b = t; }
 
- // calibrate clock constants
-#define CLKCONST_1  8000
-#define CLKCONST_2  400  // 400 is a good tested value for Raspberry Pi
+ // calibrate clock constants - DON'T USE! (libwiringPi has better timers)
+//#define CLKCONST_1  8000
+//#define CLKCONST_2  400  // 400 is a good tested value for Raspberry Pi
 
 // keywords
 #define LSBFIRST  0
